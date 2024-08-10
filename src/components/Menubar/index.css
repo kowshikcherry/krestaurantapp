@@ -1,0 +1,17 @@
+.red {
+  background-color: transparent;
+  color: red;
+  border-width: 0px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.null {
+  cursor: pointer;
+  background-color: transparent;
+  font-weight: bold;
+  border-width: 0px;
+}
+.line {
+  font-weight: bolder;
+  border-color: red;
+}

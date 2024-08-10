@@ -1,0 +1,24 @@
+.headernav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 10vh;
+  width: 100vw;
+  z-index: 1000;
+}
+.ordernumbercolor {
+  background-color: red;
+  border-radius: 10%;
+  min-height: 50px;
+  min-width: 50px;
+  color: aliceblue;
+  font-weight: bold;
+}
+.ordergreen {
+  background-color: green;
+  border-radius: 10%;
+  min-height: 50px;
+  min-width: 50px;
+  color: aliceblue;
+  font-weight: bold;
+}
