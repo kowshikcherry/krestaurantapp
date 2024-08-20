@@ -1,6 +1,9 @@
 .lists {
   list-style-type: none;
-  box-shadow: 0px, 8px, 40px rgba(7, 7, 7, 0.08);
+  box-shadow:
+    0px,
+    8px,
+    40px rgba(7, 7, 7, 0.08);
 }
 .disheslists {
   display: flex;
@@ -16,6 +19,9 @@
   background-color: green;
   color: aliceblue;
   cursor: pointer;
+  border-width: 0px;
+  margin: 3px;
+  padding: 3px;
 }
 .green1 {
   display: flex;

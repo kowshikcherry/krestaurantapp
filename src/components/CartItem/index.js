@@ -1,66 +1,50 @@
-import {useState} from 'react'
-
 import CartContext from '../../context/CartContext'
 
-import './index.css'
-
-const DishItem = props => {
+const CartItem = props => {
   const {item} = props
-
-  const [count, setCount] = useState(0)
-
   // console.log(item)
-  const onDecrement = () => {
-    if (count > 0) {
-      setCount(count - 1)
-    }
-  }
-
-  const onIncrement = () => setCount(count + 1)
-
   return (
     <CartContext.Consumer>
       {value => {
-        const {addCartItem} = value
-
-        const additemToCart = () => {
-          if (count > 0) {
-            addCartItem({...item, count})
-          }
-        }
+        const {
+          removeCartItem,
+          incrementCartItemQuantity,
+          decrementCartItemQuantity,
+        } = value
 
         return (
           <li className="lists">
             <hr />
             <h1>{item.dish_name}</h1>
-            <p>
-              {item.dish_currency} {item.dish_price}
-            </p>
             <p>{item.dish_description}</p>
-            <p className="orange">{item.dish_calories} calories</p>
             <img alt={item.dish_name} className="img" src={item.dish_image} />
             {item.dish_Availability ? (
               <div className="green1">
-                <button type="button" className="green" onClick={onDecrement}>
+                <button
+                  onClick={() => decrementCartItemQuantity(item)}
+                  type="button"
+                  className="green"
+                >
                   -
                 </button>
-                <p>{count}</p>
-                <button type="button" className="green" onClick={onIncrement}>
+                <p>{item.count}</p>
+                <button
+                  onClick={() => incrementCartItemQuantity(item.dish_id)}
+                  type="button"
+                  className="green"
+                >
                   +
                 </button>
                 <button
                   type="button"
-                  onClick={additemToCart}
+                  onClick={() => removeCartItem(item.dish_id)}
                   className="logout-desktop-btn"
                 >
-                  ADD TO CART
+                  Remove
                 </button>
               </div>
             ) : (
-              <p className="red">Not available</p>
-            )}
-            {item.addonCat.length > 0 && (
-              <p className="blue">Customizations available</p>
+              <p className="red">Not avaliabile</p>
             )}
           </li>
         )
@@ -68,53 +52,51 @@ const DishItem = props => {
     </CartContext.Consumer>
   )
 }
-
-export default DishItem
+export default CartItem
 /*
 
 <div className="disheslists">
               <div className="div1">
                 <h1>{item.dish_name}</h1>
-                <p>
-                  {item.dish_currency} {item.dish_price}
-                </p>
+                <p>{item.dish_currency}</p>
+                <p>{item.dish_price}</p>
 
                 <p>{item.dish_description}</p>
                 {item.dish_Availability ? (
                   <div className="green1">
                     <button
+                      onClick={() => decrementCartItemQuantity(item)}
                       type="button"
                       className="green"
-                      onClick={onDecrement}
                     >
                       -
                     </button>
-                    <p>{count}</p>
+                    <span>{item.count}</span>
                     <button
+                      onClick={() => incrementCartItemQuantity(item.dish_id)}
                       type="button"
                       className="green"
-                      onClick={onIncrement}
                     >
                       +
                     </button>
                     <button
                       type="button"
-                      onClick={additemToCart}
+                      onClick={() => removeCartItem(item.dish_id)}
                       className="logout-desktop-btn"
                     >
-                      ADD TO CART
+                      Remove
                     </button>
                   </div>
                 ) : (
-                  <p className="red">Not available</p>
+                  <p className="red">Not avaliabile</p>
                 )}
                 {item.addonCat.length > 0 ? (
                   <p className="blue">Customizations available</p>
                 ) : null}
               </div>
-
-              <p className="orange">{item.dish_calories} calories</p>
-
+              <div className="div2">
+                <p className="orange">{item.dish_calories} calories</p>
+              </div>
               <div className="div2">
                 <img
                   alt={item.dish_name}
@@ -123,5 +105,4 @@ export default DishItem
                 />
               </div>
             </div>
-
  */
